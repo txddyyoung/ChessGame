@@ -30,4 +30,6 @@ Finally push changes for review so it can be merged into main branch. The comman
 * `git push`  &nbsp; it is possible to use this command without any specifics and it will work as intended
 * `git push <remote> <branch>` this command specifies the remote and branch the changes will be pushed to. Use example, `git push origin main`
 
+***<p style="text-align: center;">Complete pull request in github!</p>***
+
 An important pair of commands you should utilize is `git stash` and `git stash pop` These commands allow you to store away all your changes separately from the repository and readd them when needed.
