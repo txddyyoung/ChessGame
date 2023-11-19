@@ -49,9 +49,29 @@ void printBoard(char board[BOARD_SIZE][BOARD_SIZE])
     printf("  a b c d e f g h\n\n");
 }
 
+// Function to make a move on the checkers board
+
+    // Simple move - no jump
+   
+
+    // Implement logic for capturing opponent's pieces and kinging(this game logic takes away from the directed graph decide if it's necessary!)
+
 
 int main()
 {
-    
+    char checkersBoard[BOARD_SIZE][BOARD_SIZE];
+
+    // Initialize the checkers board
+    initializeBoard(checkersBoard);
+
+    // Display the initial checkers board
+    printBoard(checkersBoard);
+
+    // Make a move
+
+    // Display the board after the move
+
+    // Execute other necessary functions
+
     return 0;
 }
