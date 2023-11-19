@@ -33,6 +33,23 @@ void initializeBoard(char board[BOARD_SIZE][BOARD_SIZE])
     }
 }
 
+// Function to print the checkers board
+void printBoard(char board[BOARD_SIZE][BOARD_SIZE])
+{
+    printf("\n  a b c d e f g h\n");
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        printf("%d ", BOARD_SIZE - i);
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            printf("%c ", board[i][j]);
+        }
+        printf("%d\n", BOARD_SIZE - i);
+    }
+    printf("  a b c d e f g h\n\n");
+}
+
+
 int main()
 {
     
