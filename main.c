@@ -1,77 +1,97 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 
 #define BOARD_SIZE 8
 
-// Function to initialize the checkers board
-void initializeBoard(char board[BOARD_SIZE][BOARD_SIZE])
+struct Node
 {
-    for (int i = 0; i < BOARD_SIZE; i++)
-    {
-        for (int j = 0; j < BOARD_SIZE; j++)
-        {
-            // Set up initial positions for black and white pieces
-            if ((i + j) % 2 == 0)
-            {
-                if (i < 3)
-                {
-                    board[i][j] = 'B'; // Black piece
-                }
-                else if (i > 4)
-                {
-                    board[i][j] = 'W'; // White piece
-                }
-                else
-                {
-                    board[i][j] = ' '; // Empty square
-                }
-            }
-            else
-            {
-                board[i][j] = ' '; // Empty square
-            }
-        }
-    }
+  //  int posX;
+   // int posY;
+      char symbol;
+    int vertex;
+   // struct Node *edge;
+      char icon;
+//    bool isFull;
+
+};
+typedef struct Node chkrpiece;
+
+ struct Graph
+{
+    int numofnodes;
+    chkrpiece ***tiles;
+
+};
+typedef struct Graph DirGraph;
+
+
+
+chkrpiece *create_tile(int V)
+{
+      chkrpiece *new_piece = malloc(sizeof(chkrpiece));
+//    new_piece->vertex = V;
+      return new_piece;
+
+
 }
 
-// Function to print the checkers board
-void printBoard(char board[BOARD_SIZE][BOARD_SIZE])
+int *create_board(int num_of_tiles)
 {
-    printf("\n  a b c d e f g h\n");
-    for (int i = 0; i < BOARD_SIZE; i++)
+    DirGraph *newgraph = malloc(sizeof(DirGraph));
+    newgraph->numofnodes = num_of_tiles;
+
+    newgraph->tiles = malloc( num_of_tiles * sizeof(chkrpiece)); //sets the size of tile array to be the product of the size of the node struct and the number of tiles
+
+    for (int tileX = 0; tileX <= num_of_tiles; tileX++)
     {
-        printf("%d ", BOARD_SIZE - i);
-        for (int j = 0; j < BOARD_SIZE; j++)
+        newgraph->tiles[tileX] = malloc( num_of_tiles * sizeof(chkrpiece));
+	for (int tileY = 0; tileY < num_of_tiles; tileY++)
         {
-            printf("%c ", board[i][j]);
+            newgraph->tiles[tileX][tileY] = create_tile(0); // Initialize each tile
         }
-        printf("%d\n", BOARD_SIZE - i);
     }
-    printf("  a b c d e f g h\n\n");
+
+    return newgraph;
+
+
+
 }
 
-// Function to make a move on the checkers board
+void *add_edge(DirGraph *graph, int start, int end)
+{
+     graph->tiles[start][end]->vertex = 1;
+     //you can expand this to change stuff like the piece's icon or maybe even it's status from a regular one to a king
 
-    // Simple move - no jump
-   
 
-    // Implement logic for capturing opponent's pieces and kinging(this game logic takes away from the directed graph decide if it's necessary!)
+}
 
+int print_graph(DirGraph *graph)
+{
+    for (int i = 0; i < graph->numofnodes; i++)
+    {
+        for (int j = 0; j < graph->numofnodes; j++)
+        {
+            printf(" %d ", graph->tiles[i][j]->vertex);
+        }
+        printf("\n");
+    }
+}
 
 int main()
 {
-    char checkersBoard[BOARD_SIZE][BOARD_SIZE];
+  //  printf("\n When the impostor is sus \n");
+    DirGraph *new_graph = create_board(BOARD_SIZE);
+    add_edge(new_graph,1,1);
 
-    // Initialize the checkers board
-    initializeBoard(checkersBoard);
+    printf("%d",new_graph->tiles[1][1]->vertex);
+   // print_graph(new_graph);
 
-    // Display the initial checkers board
-    printBoard(checkersBoard);
 
-    // Make a move
+    free(new_graph);
 
-    // Display the board after the move
 
-    // Execute other necessary functions
 
-    return 0;
 }
+
+
